@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "tester",
-    "build": "webpack -d --watch",
+    "react-dev": "webpack -d --watch",
     "start": "node server/server.js",
-    "server-dev": "nodemon server/server.js",
+    "server-dev": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
