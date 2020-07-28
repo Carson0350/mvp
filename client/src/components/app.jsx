@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import {getAnimations} from '../../sortingAlgos/mergeSort.js'
-
+import bubbleSort from '../../sortingAlgos/bubbleSort.js'
 
 class Visualizer extends React.Component {
   constructor (props) {
@@ -10,8 +10,6 @@ class Visualizer extends React.Component {
     this.state = {
       storage: [],
     };
-
-    // this.originalArray = this.originalArray.bind(this)
   };
 
   componentDidMount() {
@@ -22,7 +20,7 @@ class Visualizer extends React.Component {
   // call random num generator and push result to storage
   originalArray() {
     const storage = [];
-    for (let i = 0; i < 199; i++) {
+    for (let i = 0; i < 30; i++) {
       storage.push(randomIntFromInterval(0, 860))
     };
     this.setState({storage: storage})
@@ -35,14 +33,19 @@ class Visualizer extends React.Component {
   // isolate the values being compared
   // i need to set the style during the comparison, isolate the style for
   mergeSort() {
+    // console.log(this.state.storage)
     const swapAnimation = getAnimations(this.state.storage);
     for (var i = 0; i < swapAnimation.length; i++) {
       const randomArray = document.getElementsByClassName('randomArray')
       const newComparison = i % 3 !== 2;
       if (newComparison) {
+        console.log('array in comparisson merge', swapAnimation[i])
+        console.log(randomArray)
         const [valueOne, valueTwo] = swapAnimation[i];
         const styleOne = randomArray[valueOne].style;
+        console.log('styleOne', styleOne)
         const styleTwo = randomArray[valueTwo].style;
+        console.log('styleTwo', styleTwo)
         const color = i % 3 === 0 ? '#171d1c' : '#97db4f';
         setTimeout(() => {
           styleOne.backgroundColor = color;
@@ -57,6 +60,20 @@ class Visualizer extends React.Component {
       };
     };
   };
+
+  bubbleSort() {
+    const bubbleAnimation = bubbleSort(this.state.storage)
+    for (var i = 0; i < bubbleAnimation.length; i++) {
+      const randomArray = document.getElementsByClassName('randomArray')
+      const [valueOne, newHeight] = randomArray[i];
+      const styleOne = bubbleAnimation[valueOne].style;
+      setTimeout(() => {
+        styleOne.height = `${newHeight}px`;
+      }, i * 100);
+    }
+  }
+
+
 
   render() {
     const {storage} = this.state;
@@ -73,7 +90,7 @@ class Visualizer extends React.Component {
             <li>List Traversal</li>
           </ul>
         </div>
-        <div clasName='lines'>
+        <div className='lines'>
         {storage.map((value, id) => (
           <div
             className='randomArray'
@@ -88,7 +105,7 @@ class Visualizer extends React.Component {
       <div className='buttonBox'>
         <button onClick={() => this.originalArray()} type='button' className='newArray'>New Array</button>
         <button onClick={() => this.mergeSort()} type='button' className='newArray'>MergeSort</button>
-        <button id='button' type='button' className='newArray'>BubbleSort</button>
+        <button onClick={() => this.bubbleSort()} type='button' className='newArray'>BubbleSort</button>
         <button type='button' className='newArray'>HeapSort</button>
         <button type='button' className='newArray'>QuickSort</button>
         <button type='button' className='newArray'>SelectSort</button>
