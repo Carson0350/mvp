@@ -1,57 +1,62 @@
-export function Animations(array) {
+import React from 'react'
+
+export function getAnimations (storage) {
   const animations = [];
-  if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
+  if (storage.length <= 1) {
+    return storage;
+  }
+  const storageArray = storage.slice();
+  setMerge(storage, 0, storage.length - 1, storageArray, animations);
   return animations;
 }
 
-function mergeSortHelper(
+function setMerge(
   mainArray,
-  startIdx,
-  endIdx,
-  auxiliaryArray,
+  startId,
+  endId,
+  storageArray,
   animations,
 ) {
-  if (startIdx === endIdx) return;
-  const middleIdx = Math.floor((startIdx + endIdx) / 2);
-  mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
-  mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
-  doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
+  if (startId === endId) return;
+  const middleId = Math.floor((startId + endId) / 2);
+  setMerge(storageArray, startId, middleId, mainArray, animations);
+  setMerge(storageArray, middleId + 1, endId, mainArray, animations);
+  activeMerge(mainArray, startId, middleId, endId, storageArray, animations);
 }
 
-function doMerge(
+function activeMerge(
   mainArray,
-  startIdx,
-  middleIdx,
-  endIdx,
-  auxiliaryArray,
+  startId,
+  middleId,
+  endId,
+  storageArray,
   animations,
 ) {
-  let start = startIdx;
-  let i = startIdx;
-  let middle = middleIdx + 1;
-  while (secondStart <= middleIdx && middle <= endIdx) {
+  let start = startId;
+  let secondStart = startId;
+  let middle = middleId + 1;
+  while (secondStart <= middleId && middle <= endId) {
     animations.push([secondStart, middle]);
     animations.push([secondStart, middle]);
-    if (auxiliaryArray[secondStart] <= auxiliaryArray[middle]) {
-      animations.push([start, auxiliaryArray[secondStart]]);
-      mainArray[start++] = auxiliaryArray[secondStart++];
+    if (storageArray[secondStart] <= storageArray[middle]) {
+      animations.push([start, storageArray[secondStart]]);
+      mainArray[start++] = storageArray[secondStart++];
     } else {
-      animations.push([start, auxiliaryArray[middle]]);
-      mainArray[start++] = auxiliaryArray[middle++];
+      animations.push([start, storageArray[middle]]);
+      mainArray[start++] = storageArray[middle++];
     }
   }
-  while (i <= middleIdx) {
+  while (secondStart <= middleId) {
     animations.push([secondStart, secondStart]);
     animations.push([secondStart, secondStart]);
-    animations.push([start, auxiliaryArray[secondStart]]);
-    mainArray[start++] = auxiliaryArray[secondStart++];
+    animations.push([start, storageArray[secondStart]]);
+    mainArray[start++] = storageArray[secondStart++];
   }
-  while (middle <= endIdx) {
+  while (middle <= endId) {
     animations.push([middle, middle]);
     animations.push([middle, middle]);
-    animations.push([start, auxiliaryArray[middle]]);
-    mainArray[start++] = auxiliaryArray[middle++];
+    animations.push([start, storageArray[middle]]);
+    mainArray[start++] = storageArray[middle++];
   }
 }
+
