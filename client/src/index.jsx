@@ -5,3 +5,4 @@ import ReactDOM from 'react-dom';
 import Visualizer from './components/app.jsx';
 
 ReactDOM.render(<Visualizer />, document.getElementById('visualizer'));
+

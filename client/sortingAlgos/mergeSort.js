@@ -24,6 +24,13 @@ function setMerge(
   activeMerge(mainArray, startId, middleId, endId, storageArray, animations);
 }
 
+
+
+
+
+
+
+
 function activeMerge(
   mainArray,
   startId,

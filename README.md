@@ -11,3 +11,5 @@ basic datastructures are the foundation for writing efficent and clean code. wit
 - [] run npm install
 - [] navigate to localhost 3000
 - [] enjoy!
+
+- [] sortGif.gif
