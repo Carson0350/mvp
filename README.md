@@ -12,4 +12,4 @@ basic datastructures are the foundation for writing efficent and clean code. wit
 - [] navigate to localhost 3000
 - [] enjoy!
 
-- [] sortGif.gif
+![](sortGif.gif)
