@@ -12,4 +12,6 @@ basic datastructures are the foundation for writing efficent and clean code. wit
 - [] navigate to localhost 3000
 - [] enjoy!
 
-![] sortGif.gif
+# demo
+
+![sortGif](https://user-images.githubusercontent.com/60956209/90426185-f12ccb80-e07d-11ea-87b3-ae09a1f06942.gif)
