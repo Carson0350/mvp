@@ -14,4 +14,4 @@ basic datastructures are the foundation for writing efficent and clean code. wit
 
 # demo
 
-sortGif.gif
+./sortGif.gif
